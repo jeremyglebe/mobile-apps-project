@@ -18,5 +18,5 @@
 
 ## How to update your fork
  - git checkout master
- - git fetch upstream/master
+ - git fetch upstream
  - git pull
