@@ -3,6 +3,10 @@ import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DatabaseProvider } from '../../providers/database/database';
 
+// We MUST import both the firebase AND firestore modules like so
+//import * as firebase from 'firebase';
+//import 'firebase/firestore';
+
 declare var google;
 
 @Component({
@@ -39,12 +43,14 @@ export class HomePage {
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-      //Get the current time (UNIX timestamp)
-      let theDate = new Date();
       //Adds location document to our firebase collection
       this._database.addDocument('locations', {
-        point: latLng,
-        time: theDate.getTime()
+        //point: {
+        //  lat: position.coords.latitude, 
+        //  lon: position.coords.longitude
+        //},
+        point: this._database.geo(position.coords.latitude, position.coords.longitude),
+        time: Math.round(new Date().getTime() / 1000)
       });
 
     }, (err) => {
