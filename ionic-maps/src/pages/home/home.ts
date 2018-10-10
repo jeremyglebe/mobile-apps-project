@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { DatabaseProvider } from '../../providers/database/database';
 
 declare var google;
 
@@ -13,7 +14,11 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
-  constructor(public navCtrl: NavController, public geolocation: Geolocation) {
+  constructor(
+    //Constructor parameters
+    public navCtrl: NavController,
+    public geolocation: Geolocation,
+    private _database: DatabaseProvider, ) {
 
   }
 
@@ -34,9 +39,18 @@ export class HomePage {
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+      //Get the current time (UNIX timestamp)
+      let theDate = new Date();
+      //Adds location document to our firebase collection
+      this._database.addDocument('locations', {
+        point: latLng,
+        time: theDate.getTime()
+      });
+
     }, (err) => {
       console.log(err);
     });
+
 
   }
 
