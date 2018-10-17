@@ -14,16 +14,24 @@ export class AuthServiceProvider {
   constructor(
     //Angular fire authentication for use with firebase
     public afAuth: AngularFireAuth
-    ) {
+  ) {
     console.log('Hello AuthServiceProvider Provider');
   }
 
-  async doRegister(email, password){
+  async doRegister(email, password) {
     try {
       await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     } catch (e) {
       throw e;
     }
-   }
+  }
+
+  async doLogin(email, password) {
+    try {
+      await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    } catch (e) {
+      throw e;
+    }
+  }
 
 }
