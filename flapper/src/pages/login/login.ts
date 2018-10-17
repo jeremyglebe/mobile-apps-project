@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { ToastController } from 'ionic-angular';
+import { App } from 'ionic-angular';
+
+import { MapPage } from '../../pages/map/map';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,6 +24,7 @@ export class LoginPage {
   loginPassword: string;
 
   constructor(
+    public appCtrl: App,
     public navCtrl: NavController,
     public navParams: NavParams,
     public auth: AuthServiceProvider,
@@ -45,6 +49,9 @@ export class LoginPage {
         closeButtonText: "dismiss"
       });
       toast.present();
+      //this.navCtrl.push(MapPage);
+      //this.navCtrl.setRoot(MapPage);
+      this.appCtrl.getRootNav().setRoot(MapPage);
     } catch (e) {
       console.log("Failed to login!");
       console.log(e);
