@@ -45,6 +45,14 @@ export class RegisterPage {
         first: this.nameFirst,
         last: this.nameLast
       });
+      let toast = this.toaster.create({
+        message: 'Registered successfully!',
+        duration: 3000,
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: "dismiss"
+      });
+      toast.present();
     } catch (e) {
       console.log("Failed to register!");
       console.log(e);

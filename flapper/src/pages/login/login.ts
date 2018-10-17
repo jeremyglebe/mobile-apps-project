@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the LoginPage page.
@@ -15,11 +17,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loginEmail: string;
+  loginPassword: string;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public auth: AuthServiceProvider,
+    public toaster: ToastController
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  async button_Login() {
+
+    console.log("Attempting to login...");
+    try {
+      await this.auth.doLogin(this.loginEmail, this.loginPassword);
+      let toast = this.toaster.create({
+        message: 'Logged in successfully!',
+        duration: 3000,
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: "dismiss"
+      });
+      toast.present();
+    } catch (e) {
+      console.log("Failed to login!");
+      console.log(e);
+      let toast = this.toaster.create({
+        message: 'Failed to login!',
+        duration: 3000,
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: "dismiss"
+      });
+      toast.present();
+    }
+  }
+
 }
+

@@ -15,4 +15,21 @@
 
 <ion-content padding>
 
+<!-- Login stuff -->
+<ion-list>
+
+    <ion-item>
+      <ion-label color="primary" floating>Email</ion-label>
+      <ion-input [(ngModel)]="loginEmail"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" floating>Password</ion-label>
+      <ion-input type='password' [(ngModel)]="loginPassword"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+  
+  <button ion-button round (click)='button_Login();'>Login!</button>
+  
 </ion-content>
