@@ -14,6 +14,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { TabsPage } from '../pages/tabs/tabs';
+import { MapPage } from '../pages/map/map';
 
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { DatabaseProvider } from '../providers/database/database';
@@ -26,7 +27,8 @@ import { firebaseConfig } from '../environments/firebase';
     MyApp,
     LoginPage,
     RegisterPage,
-    TabsPage
+    TabsPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { firebaseConfig } from '../environments/firebase';
     MyApp,
     LoginPage,
     RegisterPage,
-    TabsPage
+    TabsPage,
+    MapPage
   ],
   providers: [
     StatusBar,
