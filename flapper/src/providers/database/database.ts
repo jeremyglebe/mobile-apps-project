@@ -24,8 +24,7 @@ export class DatabaseProvider {
   addDocument(
     collectionObj: string,
     dataObj: any
-    ): Promise<any> 
-    {
+  ): Promise<any> {
     return new Promise((resolve, reject) => {
       this._db.collection(collectionObj).add(dataObj)
         .then((obj: any) => {
@@ -35,6 +34,13 @@ export class DatabaseProvider {
           reject(error);
         });
     });
+  }
+
+  /** geo
+   * Creates a geopoint
+   */
+  geo(lat: number, lon: number) {
+    return new firebase.firestore.GeoPoint(lat, lon);
   }
 
 }
