@@ -8,6 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+//Maps import
+import { Geolocation } from '@ionic-native/geolocation';
+
 import { MyApp } from './app.component';
 
 //Pages
@@ -16,6 +19,7 @@ import { RegisterPage } from '../pages/register/register';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MapPage } from '../pages/map/map';
 
+//My providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { DatabaseProvider } from '../providers/database/database';
 
@@ -48,6 +52,7 @@ import { firebaseConfig } from '../environments/firebase';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Geolocation,
     AuthServiceProvider,
     DatabaseProvider
   ]
