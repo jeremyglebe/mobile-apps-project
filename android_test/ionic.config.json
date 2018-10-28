@@ -1,0 +1,7 @@
+{
+  "name": "android_test",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
