@@ -21,6 +21,14 @@ import { MapPage } from '../pages/map/map';
 import { LoggedPage } from '../pages/logged/logged';
 import { TestingPage } from '../pages/testing/testing';
 
+//Page modules
+import { LoggedPageModule } from '../pages/logged/logged.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
+import { RegisterPageModule } from '../pages/register/register.module';
+import { MapPageModule } from '../pages/map/map.module';
+import { TestingPageModule } from '../pages/testing/testing.module';
+
 //My providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { DatabaseProvider } from '../providers/database/database';
@@ -30,19 +38,19 @@ import { firebaseConfig } from '../environments/firebase';
 
 @NgModule({
   declarations: [
-    MyApp,
-    LoginPage,
-    RegisterPage,
-    TabsPage,
-    MapPage,
-    LoggedPage,
-    TestingPage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    TabsPageModule,
+    LoginPageModule,
+    RegisterPageModule,
+    LoggedPageModule,
+    MapPageModule,
+    TestingPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

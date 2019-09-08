@@ -35,7 +35,7 @@ export class MapPage {
     public navParams: NavParams,
     public geolocation: Geolocation,
     public database: DatabaseProvider
-    ) {
+  ) {
   }
 
   ionViewDidLoad() {
@@ -76,8 +76,8 @@ export class MapPage {
   }
   ****************************************************************************/
 
-  async loadMap(){
-    try{
+  async loadMap() {
+    try {
       //Get the current location
       var position = await this.geolocation.getCurrentPosition();
       //Create a Google latitude longitude object (not the same as a geopoint)
@@ -93,7 +93,7 @@ export class MapPage {
       //Create a map object using the map config and the map element
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-      try{
+      try {
         //Adds location document to our firebase collection
         //We choose to await the docAdd so that the location will be
         //in the database when we drop our markers a moment later
@@ -103,34 +103,34 @@ export class MapPage {
           //Get the time & divide it by 1000 for UNIX timestamp
           time: Math.round(new Date().getTime() / 1000)
         });
-  
+
         //Drop all markers in the location collection
         this.dropAllMarkers();
 
-      }catch(e){
+      } catch (e) {
         console.log(e);
       }
 
-    }catch(e){
+    } catch (e) {
       throw e;
     }
   }
 
-  async dropAllMarkers(){
+  async dropAllMarkers() {
 
-    try{
+    try {
       var locs = await this.database.collectionObj('locations');
-        locs.forEach((locObj: any) => {
-          var geopoint = locObj['point'];
-          console.log(geopoint);
-          var googlepoint = new google.maps.LatLng(
-            geopoint.latitude,
-            geopoint.longitude
-            );
-          this.addMarker(googlepoint);
-        });
+      locs.forEach((locObj: any) => {
+        var geopoint = locObj['point'];
+        console.log(geopoint);
+        var googlepoint = new google.maps.LatLng(
+          geopoint.latitude,
+          geopoint.longitude
+        );
+        this.addMarker(googlepoint);
+      });
     }
-    catch(e){
+    catch (e) {
       throw e;
     }
 
